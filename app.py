@@ -1,0 +1,44 @@
+from __future__ import annotations
+import sys
+from flask import Flask, Response
+from functions import download_zip, number_of_products, name_of_products, name_of_parts
+
+app = Flask(__name__)
+
+XML_PATH = None
+
+#root = download_zip()
+
+@app.route("/1")
+def task1():
+    root = download_zip()
+    return str(number_of_products(root)) + "\n", 200, {"Content-Type": "text/plain; charset=utf-8"}
+
+@app.route("/2")
+def task2():
+    root = download_zip()
+    return (name_of_products(root))
+
+@app.route("/3")
+def task3():
+    root = download_zip()
+    return (name_of_parts(root))
+
+
+def cli_main():
+    root = download_zip()
+    if len(sys.argv) < 2:
+        print("Usage: python app.py {1|2|3}")
+        sys.exit(1)
+    sel = sys.argv[1]
+    if sel == "1":
+        print('Number of products is: ',number_of_products(root))
+    elif sel == "2":
+        print(name_of_products(root))
+    elif sel == "3":
+        print(name_of_parts(root))
+    else:
+        print("Please press 1/2/3.")
+
+if __name__ == "__main__":
+    cli_main()
