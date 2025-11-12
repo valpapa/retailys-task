@@ -18,4 +18,5 @@ EXPOSE 8000
 
 # Spuštění aplikace (Flask server)
 # ensure_xml() stáhne a rozbalí data ještě před startem serveru
-CMD ["python", "-c", "from app import app; from core import ensure_xml; ensure_xml(); app.run(host='0.0.0.0', port=8000)"]
+CMD ["python", "-c", "from app import app; from functions import download_zip; download_zip(); app.run(host='0.0.0.0', port=8000)"]
+
