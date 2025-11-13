@@ -31,7 +31,10 @@ def name_of_products(root):
     return "".join(out_lines) + "\n"
     
 def name_of_parts(root):
+    out_lines = []
     for i, item in enumerate(root.findall("./categoriesWithParts//category/item"), start=1):
         name = item.get("name")
         code = item.get("code")
-        print(f"{i}. Code: {code}, Name: {name}")
+        out_lines.append(f"{i}. Code: {code}, Name: {name}\n")
+        #print(f"{i}. Code: {code}, Name: {name}")
+    return "".join(out_lines) + "\n"
