@@ -1,22 +1,19 @@
-FROM python:3.11-slim
+FROM python:3.12-slim
 
-# Nastavíme pracovní adresář uvnitř kontejneru
+# Nepovinné, ale užitečné: žádné .pyc a UTF-8
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
-# Zkopírujeme soubory requirements a nainstalujeme závislosti
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Zkopíruj soubory aplikace
+COPY app.py functions.py . 
 
-# Zkopírujeme zbytek aplikace
-COPY . .
+# Nainstaluj závislosti
+RUN pip install --no-cache-dir flask requests
 
-# Nastavíme proměnnou pro Flask (není nutná, ale pomáhá)
-ENV PYTHONUNBUFFERED=1
+# Flask jede na 5000
+EXPOSE 5000
 
-# Flask běží na portu 8000
-EXPOSE 8000
-
-# Spuštění aplikace (Flask server)
-# ensure_xml() stáhne a rozbalí data ještě před startem serveru
-CMD ["python", "-c", "from app import app; from functions import download_zip; download_zip(); app.run(host='0.0.0.0', port=8000)"]
-
+# Spustí Flask server (viz if __name__ == "__main__" v app.py)
+CMD ["python", "app.py", "runserver"]
