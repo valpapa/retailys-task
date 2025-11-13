@@ -10,7 +10,7 @@ o	/2 – názvy produktů (?limit=)
 
 o	/3 – díly z categoriesWithParts (?limit=)
 
-•	Streamové XML parsování (iterparse)
+•	Stream XML parsování (iterparse)
 
 Paměťově úsporné čtení XML, ukládání jen aktuální větve, průběžné elem.clear().
 
