@@ -1,7 +1,7 @@
 from __future__ import annotations
 import sys
 from flask import Flask, Response, request
-from functions_chat import number_of_products, name_of_products, name_of_parts
+from functions import number_of_products, name_of_products, name_of_parts
 
 app = Flask(__name__)
 
