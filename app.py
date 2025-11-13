@@ -41,4 +41,7 @@ def cli_main():
         print("Please press 1/2/3.")
 
 if __name__ == "__main__":
-    cli_main()
+    if len(sys.argv) > 1 and sys.argv[1] == "runserver":
+        app.run(host="0.0.0.0", port=5000, debug=True)
+    else:
+        cli_main()
