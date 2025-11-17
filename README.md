@@ -43,3 +43,5 @@ Endpoint	Popis	Parametry
 /3	Díly z /categoriesWithParts/.../item	?limit=N
 
 N – počet vypsaných prvků (defaultně 100)
+
+Example: https://retailys-app-latest.onrender.com/1  -> vypíše počet parametrů
